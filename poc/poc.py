@@ -55,22 +55,36 @@ E.G. feature
 }
 """
 
-"""
-E.G. coordinate
----------------
-[
-  18.852539062499996,
-  -34.016241889667015
-]
-"""
 
-
-def convert_journey_to_coords(journey):
+def get_journey_coords(journey):
     for itinery in journey['itineraries']:
-        print itinery['id']
         line_coordinates = []
         for leg in itinery['legs']:
             line_coordinates.extend(leg['geometry']['coordinates'])
     return line_coordinates
 
-print convert_journey_to_coords(journeys[0])
+feature_collection = {
+  "type": "FeatureCollection",
+  "features": []
+}
+
+feature = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": []
+  }
+}
+
+
+def get_geojsosn_feature_collection(journeys, feature_collection, feature):
+    for journey in journeys:
+        feature['geometry']['coordinates'].append(get_journey_coords(journey))
+        feature_collection['features'].append(feature)
+    return feature_collection
+
+geo_json_data = get_geojsosn_feature_collection(journeys, feature_collection, feature)
+
+with open('{}/poc/geo_json_dump.json'.format(base_dir), 'w') as outfile:
+    json.dump(geo_json_data, outfile)
