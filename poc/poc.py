@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 from subprocess import check_output, CalledProcessError
@@ -80,8 +81,9 @@ feature = {
 
 def get_geojsosn_feature_collection(journeys, feature_collection, feature):
     for journey in journeys:
-        feature['geometry']['coordinates'].append(get_journey_coords(journey))
-        feature_collection['features'].append(feature)
+        feature_deepcopy = copy.deepcopy(feature)
+        feature_deepcopy['geometry']['coordinates'].extend(get_journey_coords(journey))
+        feature_collection['features'].append(feature_deepcopy)
     return feature_collection
 
 geo_json_data = get_geojsosn_feature_collection(journeys, feature_collection, feature)
