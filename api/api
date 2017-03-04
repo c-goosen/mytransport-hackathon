@@ -1,0 +1,3 @@
+import falcon
+import elasticsearch
+api = application = falcon.API()
