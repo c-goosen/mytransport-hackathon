@@ -1,0 +1,65 @@
+[
+    {
+        "id": "4Zh57pr7r0iuWacIANn3bQ",
+        "href": "https://platform.whereismytransport.com/api/stops/4Zh57pr7r0iuWacIANn3bQ",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.631374,
+                -33.904994
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    },
+    {
+        "id": "h2zwHQbPgU6kkqcFAJtocA",
+        "href": "https://platform.whereismytransport.com/api/stops/h2zwHQbPgU6kkqcFAJtocA",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Blackheath Train Station",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.70334,
+                -33.963211
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    },
+    {
+        "id": "EYy7qLQmm0SZnacFAJtoYg",
+        "href": "https://platform.whereismytransport.com/api/stops/EYy7qLQmm0SZnacFAJtoYg",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Zevenwacht Shopping Centre",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.694748,
+                -33.949641
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    }
+]

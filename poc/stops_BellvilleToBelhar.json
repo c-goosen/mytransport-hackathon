@@ -1,0 +1,65 @@
+[
+    {
+        "id": "4Zh57pr7r0iuWacIANn3bQ",
+        "href": "https://platform.whereismytransport.com/api/stops/4Zh57pr7r0iuWacIANn3bQ",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.631374,
+                -33.904994
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    },
+    {
+        "id": "hfetjDbaZkO2gqcFAJtZyg",
+        "href": "https://platform.whereismytransport.com/api/stops/hfetjDbaZkO2gqcFAJtZyg",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Sixty Board, Belhar",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.644225,
+                -33.941973
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    },
+    {
+        "id": "Z8zdfqkEIkGfcKcFAJtcgA",
+        "href": "https://platform.whereismytransport.com/api/stops/Z8zdfqkEIkGfcKcFAJtcgA",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Symphony Way, Erica Drive",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.635294,
+                -33.942027
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "id": "xb2Crm6k-0Kl26cFAJtZkQ",
+        "href": "https://platform.whereismytransport.com/api/stops/xb2Crm6k-0Kl26cFAJtZkQ",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Atlantis Taxi Rank",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.493385,
+                -33.562319
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    },
+    {
+        "id": "4Zh57pr7r0iuWacIANn3bQ",
+        "href": "https://platform.whereismytransport.com/api/stops/4Zh57pr7r0iuWacIANn3bQ",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.631374,
+                -33.904994
+            ]
+        },
+        "modes": [
+            "ShareTaxi"
+        ]
+    }
+]

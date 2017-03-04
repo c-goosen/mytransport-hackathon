@@ -1,0 +1,47 @@
+[
+    {
+        "id": "Ta_9rc7bbUKJzKcIANpcQw",
+        "href": "https://platform.whereismytransport.com/api/lines/Ta_9rc7bbUKJzKcIANpcQw",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank to Atlantis Taxi Rank",
+        "shortName": "Bellville to Atlantis",
+        "mode": "ShareTaxi",
+        "colour": "#ffb8860b",
+        "textColour": "#ff000000"
+    },
+    {
+        "id": "qsutHc2KG0-Av6cIANpM8w",
+        "href": "https://platform.whereismytransport.com/api/lines/qsutHc2KG0-Av6cIANpM8w",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank to Belhar",
+        "shortName": "Bellville to Belhar",
+        "mode": "ShareTaxi",
+        "colour": "#fff4a460",
+        "textColour": "#ff000000"
+    },
+    {
+        "id": "rq6izxMt70S33KcIANpQdA",
+        "href": "https://platform.whereismytransport.com/api/lines/rq6izxMt70S33KcIANpQdA",
+        "agency": {
+            "id": "CVVPBFb_v0KzC6cFAJGOkw",
+            "href": "https://platform.whereismytransport.com/api/agencies/CVVPBFb_v0KzC6cFAJGOkw",
+            "name": "Cape Town Taxi",
+            "culture": "en"
+        },
+        "name": "Bellville Taxi Rank to Blackheath Train Station",
+        "shortName": "Bellville to Blackheath",
+        "mode": "ShareTaxi",
+        "colour": "#ffc71585",
+        "textColour": "#ff000000"
+    }
+]

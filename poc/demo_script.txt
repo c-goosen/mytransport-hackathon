@@ -1,0 +1,17 @@
+Work out line
+
+
+1.) Choose the Line/s of interest
+2.) ForEach line of interest:
+    - Find its stops
+3.) Start Journey from starting coordinate to each other stop (longest distance is the full line)
+4.) Find predicted leaving time from originating stop
+5.) Find predicting arrival time from destination stop
+
+6.) Plot a uniform movemnet from start to end.
+
+7.) Create demand for a stop at a particular point < 1km away from route
+
+8.) Show taxi deviating from route to cater for demand.
+
+geojson.io
