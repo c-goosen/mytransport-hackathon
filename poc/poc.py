@@ -61,7 +61,14 @@ def get_journey_coords(journey):
     for itinery in journey['itineraries']:
         line_coordinates = []
         for leg in itinery['legs']:
-            line_coordinates.extend(leg['geometry']['coordinates'])
+            try:
+                leg_line_mode = leg['line']['mode']
+            except:
+                pass
+            else:
+                if leg_line_mode == 'ShareTaxi':
+                    line_coordinates.extend(leg['geometry']['coordinates'])
+
     return line_coordinates
 
 feature_collection = {
@@ -81,9 +88,11 @@ feature = {
 
 def get_geojsosn_feature_collection(journeys, feature_collection, feature):
     for journey in journeys:
+        journey_coords = get_journey_coords(journey)
         feature_deepcopy = copy.deepcopy(feature)
-        feature_deepcopy['geometry']['coordinates'].extend(get_journey_coords(journey))
-        feature_collection['features'].append(feature_deepcopy)
+        feature_deepcopy['geometry']['coordinates'].extend(journey_coords)
+        if journey_coords:
+            feature_collection['features'].append(feature_deepcopy)
     return feature_collection
 
 geo_json_data = get_geojsosn_feature_collection(journeys, feature_collection, feature)
