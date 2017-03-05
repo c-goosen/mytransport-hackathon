@@ -2,15 +2,33 @@ import os.path, sys
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 import json
 import falcon
+import urllib
 import uuid
 import settings
 import requests
 from geopy.geocoders import Nominatim
 import geopy.distance
 from geopy.distance import vincenty
+import datetime
 radius = []
+geoJSON_template = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          
+        ]
+      }
+    }
+  ]
+}
 
 class interest(object):
+    global radius
     interested = {}
     #radius = []i
     def proximity_to_others(self, my_coordinates):
@@ -25,6 +43,7 @@ class interest(object):
         else:
             return 0, []
     def geojson_io_prox(self, resp, my_coordinates, user_name):
+        global radius
         distance = 0
         radius = []
         try:
@@ -43,7 +62,8 @@ class interest(object):
             radius_dict = {
                 'center': my_coordinates,
                 'radius': points,
-                'people': [user_name,]
+                'people': [user_name,],
+                'created_date': datetime.datetime.utcnow().strftime("%a %b %d %H:%M:%S %Z %Y")
                         }
         #self.radius.apppend(radius_dict)
             radius.append(radius_dict)
@@ -73,7 +93,10 @@ class interest(object):
         print "Response from api/stops"
         print request.status_code
         response_data = request.json()
-        if response_data == "[]":
+        print "response_data type"
+        print type(response_data)
+        if not response_data:
+            print 'response_data == "[]"'
             resp.status = falcon.HTTP_200
             resp.body = """{'message' :
                 'No stops in your area, adding you to interest area'}"""
@@ -88,12 +111,18 @@ class interest(object):
                     map_list.append("{}{},{}".format(google_map_url, 
                                                      coordinates[1], 
                                                      coordinates[0]))
-            print x['geometry']
+            #print x['geometry']
             message_dict["maps"] = map_list
+            if message_dict:
+                message_dict["message"] = """You have existing stops within 1km 
+                of your location"""
+            else:
+                message_dict["messsage"] = """You\shave no existing stops nearby, 
+                we will combine your interest in a stop with others in the area"""
             resp.body = "{}".format(message_dict)
             resp.status = falcon.HTTP_200
             return True
-            
+            #return True
         #print json.load(request.text)
 
     def geopy_coordinates(self, address,resp):
@@ -113,6 +142,7 @@ class interest(object):
         resp.body = '{"message":"Post request needed with GeoLocation data"}'
         resp.status = falcon.HTTP_200
     def on_post(self, req, resp):
+        global radius
         print req.headers
         user_name = ""
         post_data = json.load(req.stream)
@@ -130,12 +160,35 @@ class interest(object):
             if "address" in post_data:
                 my_coordinates = self.geopy_coordinates(post_data["address"],resp)
                 #self.geojson_io_prox(resp,my_coordinates, user_name)
-                if not self.proximity(req, resp, my_coordinates, user_name):
+                print "BASED ON ADDRESS"
+                proximity = self.proximity(req, resp, my_coordinates, user_name)
+                print "PROXIMITY"
+                print proximity
+                if proximity == False:
+                    print "NO routes"
                     self.geojson_io_prox(resp,my_coordinates, user_name)
+                    #print "No routes"
         else:
             falcon.HTTPMissingParam
             resp.body = """{ 'message' :
                 'Please supply a address or coordinates (long,lat)'}"""
-
-
-
+        
+        print "Current Radius"
+        print radius
+        radius_list = []
+        radius_maps = []
+        for x in radius:
+            for y in x['radius']:
+                radius_list.append([y[0],y[1]])
+            radius_list.append([x['radius'][0][0],x['radius'][0][1]])
+            geoJSON_template['features'][0]['geometry']['coordinates'].append(radius_list)
+            radius_maps.append( {
+                'center': x['center'],
+                'geoJSON': geoJSON_template,
+                'geoJSON_url' : "http://geojson.io/#map=5/{}/{}&data=data:application/json,{}".format(
+                x['center'][0], x['center'][1], urllib.quote(json.dumps(geoJSON_template).encode()) )
+            }
+            )
+        resp.body
+        print radius_maps
+        #print geoJSON_template
