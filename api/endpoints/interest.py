@@ -22,6 +22,8 @@ class interest(object):
                 print "Proximity distance"
                 print distance
                 return distance, x["center"]
+        else:
+            return 0, []
     def geojson_io_prox(self, resp, my_coordinates, user_name):
         distance = 0
         radius = []
@@ -41,11 +43,14 @@ class interest(object):
             radius_dict = {
                 'center': my_coordinates,
                 'radius': points,
-                'people': []
+                'people': [user_name,]
                         }
         #self.radius.apppend(radius_dict)
             radius.append(radius_dict)
-        #print radius
+            print "\n\n RADIUS: "
+            print radius
+            print "\n\n"
+
         else:
             for x in radius:
                 if x["center"] == radius:
@@ -72,6 +77,7 @@ class interest(object):
             resp.status = falcon.HTTP_200
             resp.body = """{'message' :
                 'No stops in your area, adding you to interest area'}"""
+            return False
         else:
             map_list = []
             message_dict = {"message":"", "maps":[]}
@@ -86,6 +92,8 @@ class interest(object):
             message_dict["maps"] = map_list
             resp.body = "{}".format(message_dict)
             resp.status = falcon.HTTP_200
+            return True
+            
         #print json.load(request.text)
 
     def geopy_coordinates(self, address,resp):
@@ -109,17 +117,21 @@ class interest(object):
         user_name = ""
         post_data = json.load(req.stream)
         print post_data
-        if "user_name" in post_data:
+        if "name" in post_data:
             user_name = post_data["name"]
+            print "Username IF statement"
+            print user_name
         if "geometry" in post_data:
-            self.geojson_io_prox(resp, post_data["geometry"]["coordinates"],user_name)
-            self.proximity(req,resp, post_data["geometry"]["coordinates"],user_name)
-            i#self.geojson_io_prox(resp, post_data["geometry"]["coordinates"])
+            #self.geojson_io_prox(resp, post_data["geometry"]["coordinates"],user_name)
+            if not self.proximity(req,resp, post_data["geometry"]["coordinates"],user_name):
+                self.geojson_io_prox(resp, post_data["geometry"]["coordinates"],user_name)
+            #self.geojson_io_prox(resp, post_data["geometry"]["coordinates"])
         elif post_data["address"]:
             if "address" in post_data:
                 my_coordinates = self.geopy_coordinates(post_data["address"],resp)
-                self.geojson_io_prox(resp,my_coordinates, user_name)
-                self.proximity(req, resp, my_coordinates, user_name)
+                #self.geojson_io_prox(resp,my_coordinates, user_name)
+                if not self.proximity(req, resp, my_coordinates, user_name):
+                    self.geojson_io_prox(resp,my_coordinates, user_name)
         else:
             falcon.HTTPMissingParam
             resp.body = """{ 'message' :
