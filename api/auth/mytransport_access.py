@@ -8,8 +8,8 @@ import os
 # Better to remove hard coded API keys
 # Deleted the keys on the platform anyway
 # Add environment variables in your shell to access API
-client_id = os.environ("MY_TRANSPORT_CLIENT_ID")
-client_secret = os.environ("MY_TRANSPORT_CLIENT_SECRETi")
+client_id = os.environ.get("MY_TRANSPORT_CLIENT_ID")
+client_secret = os.environ.get("MY_TRANSPORT_CLIENT_SECRETi")
 def auth_mytransport():
         payload = {
                     'client_id': client_id,

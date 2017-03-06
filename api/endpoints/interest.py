@@ -104,7 +104,7 @@ class interest(object):
 
             messge_dict = {'message' :
                 "No stops in your area, adding you to interest area", "maps": your_radius_map}
-            resp.body = "{}".format(json.dumps(messge_dict))
+            resp.body = json.dumps(messge_dict)
             return False
         else:
             map_list = []
@@ -123,7 +123,7 @@ class interest(object):
             else:
                 message_dict["messsage"] = """You\shave no existing stops nearby,
                 we will combine your interest in a stop with others in the area"""
-            resp.body = "{}".format(message_dict)
+            resp.body = json.dumps(message_dict)
             resp.status = falcon.HTTP_200
             return True
             #return True
@@ -143,9 +143,20 @@ class interest(object):
 
 
     def on_get(self, req, resp):
-        resp.body = '{"message":"Post request needed with GeoLocation data"}'
+        resp_dict = {"message":"Post request needed with GeoLocation data"}
+        resp.body = json.dumps(resp_dict)
         resp.status = falcon.HTTP_200
     def on_post(self, req, resp):
+        # Main API method, post the following
+        '''
+        POST Request
+        data type: JSON
+        Required: name, address or coordinates
+        data format : {
+        "name" : "Yourname",
+        "address" : "Your number and street address, province, etc"
+        "geometry" : { "coordinates" : ["x", "y"] }
+        '''
         global radius_maps
         global radius
         print req.headers
@@ -171,8 +182,10 @@ class interest(object):
                     self.geojson_io_prox(resp,my_coordinates, user_name)
         else:
             falcon.HTTPMissingParam
-            resp.body = """{ 'message' :
-                'Please supply a address or coordinates (long,lat)'}"""
+            resp_dict = { 'message' :
+                                         'Please supply a address or coordinates (long,lat)'}
+            # json.dumps allows proper formating of message
+            resp.body = json.dumps(resp_dict)
         print "Current Radius"
         print radius
         radius_list = []
@@ -189,6 +202,6 @@ class interest(object):
                 x['center'][1], x['center'][0], urllib.quote(json.dumps(geoJSON_template).encode()) )
             }
             )
-        resp.body
+        #resp.body
         print radius_maps
         #print geoJSON_template
