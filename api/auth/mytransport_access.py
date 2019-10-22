@@ -19,5 +19,5 @@ def auth_mytransport():
                 }
         request = requests.post(settings.API_AUTH_URL, data=payload)
         creds = json.loads(request.text)
-        print request.status_code
+        print(request.status_code)
         return creds["access_token"]

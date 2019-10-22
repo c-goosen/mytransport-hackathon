@@ -31,6 +31,5 @@ if __name__ == "__main__":
         )
     print('[INFO] Server Ready')
     ACCESS_TOKEN = settings.ACCESS_TOKEN
-    print ACCESS_TOKEN
 
     httpd.serve_forever()
