@@ -2,7 +2,7 @@ appdirs==1.4.2
 click==6.7
 elasticsearch==5.2.0
 falcon==1.1.0
-Flask==0.12
+Flask==1.0
 gevent==1.2.1
 greenlet==0.4.12
 grequests==0.3.0
