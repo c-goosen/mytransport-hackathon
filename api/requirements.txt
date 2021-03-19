@@ -8,7 +8,7 @@ greenlet==0.4.15
 grequests==0.3.0
 gunicorn==19.6.0
 itsdangerous==0.24
-Jinja2==2.10.3
+Jinja2==2.11.3
 MarkupSafe==0.23
 packaging==16.8
 pyparsing==2.1.10
